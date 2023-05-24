@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Import Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Import Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        #scroll-home::-webkit-scrollbar {
+            background-color: transparent;
+            height: 5px;
+        }
+
+        #scroll-home::-webkit-scrollbar-button {
+            display: none;
+        }
+
+        #scroll-home::-webkit-scrollbar-thumb {
+            background-color: rgb(186, 186, 192, 0.5);
+            border-radius: 16px;
+        }
+
+        #scroll-home::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+    </style>
+    <title>Barbatos Shop</title>
+</head>
+<body>
+    <!-- Navbar Component -->
+    <nav class="shadow-md py-2 px-5 fixed top-0 left-0 right-0 z-10 bg-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex gap-10 items-center">
+                <div><a href="/" class="block py-3 font-bold text-2xl text-cyan-500">Barbatos Shop</a></div>
+                <ul class="flex gap-5">
+                    <li class="relative group">
+                        <div class="text-base flex items-center gap-2 cursor-pointer py-3"><span>Category</span><span class="text-xs"><i class='bx bxs-down-arrow'></i></span></div>
+                        <div class="shadow-md absolute top-full left-0 rounded-lg hidden group-hover:block transition bg-white">
+                            <ul class="divide-y">
+                                <!-- For loop data category -->
+                                <li><a href="/category/1" class="block py-2.5 px-7 transition rounded hover:bg-cyan-600 hover:text-white"><!-- Category name -->Beauty<!-- END Category name --></a></li>
+                                <!-- END For loop data category -->
+                                <li><a href="/category/2" class="block py-2.5 px-7 transition rounded hover:bg-cyan-600 hover:text-white">Electronic</a></li>
+                                <li><a href="/category/3" class="block py-2.5 px-7 transition rounded hover:bg-cyan-600 hover:text-white">Food</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- If user login as Admin -->
+                    <li><a href="/manage" class="block text-base py-3">Manage Product</a></li>
+                    <!-- END If user login as Admin -->
+                </ul>
+            </div>
+            <div>
+                <!-- If user logged in (Admin/Buyer) -->
+                <ul class="flex gap-5 py-1 items-center">
+                    <li class="relative group">
+                        <div class="text-base flex items-center gap-2 cursor-pointer py-3"><span><!-- Username -->Adi<!-- END Username --></span><span class="text-xs"><i class='bx bxs-down-arrow'></i></span></div>
+                        <div class="shadow-md absolute top-full left-0 rounded-lg hidden group-hover:block transition bg-white">
+                            <ul class="divide-y">
+                                <li><a href="/profile" class="block py-2.5 px-7 transition rounded hover:bg-cyan-600 hover:text-white">Profile</a></li>
+                                <!-- If user login as Buyer (Only buyer have history menu) -->
+                                <li><a href="/history" class="block py-2.5 px-7 transition rounded hover:bg-cyan-600 hover:text-white">History</a></li>
+                                <!-- END If user login as Buyer (Only buyer have history menu) -->
+                                <li>
+                                    <form action="" method="POST">
+                                        <button type="submit" class="block py-2.5 px-7 transition rounded hover:bg-cyan-600 hover:text-white">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- If user login as Buyer (Only buyer have cart) -->
+                    <li><a href="/cart" class="block text-xl py-2 px-6 text-white rounded-xl border border-cyan-500 bg-cyan-500 flex items-center gap-2 transition hover:bg-transparent hover:text-cyan-500"><i class='bx bxs-cart-alt' ></i><span class="text-base">Chart</span></a></li>
+                    <!-- END If user login as Buyer (Only buyer have cart) -->
+                </ul>
+                <!-- END If user logged in (Admin/Buyer) -->
+                <!-- Else If user not loggd in (Guest) -->
+                    <!-- <ul class="flex gap-5 py-1 items-center">
+                        <li><a href="/login" class="block text-base py-2">Login</a></li>
+                        <li><a href="/register" class="block text-base py-2">Register</a></li>
+                    </ul> -->
+                <!-- END Else If user not loggd in (Guest) -->
+            </div>
+        </div>
+    </nav>
+    <!-- END Navbar Component -->
+    <main class="pt-20 h-screen">
+        <div class="container mx-auto h-full">
+            <section class="pt-3 pb-5">
+                <h1 class="text-4xl text-center pt-10">Welcome to <span class="text-cyan-500 font-bold">Barbatos Shop</span></h1>
+                <form action="" method="GET">
+                    <div class="bg-gray-200 flex items-center gap-3 mt-10 mb-3 p-3 rounded-xl">
+                        <input type="text" placeholder="Search by product name" class="grow px-5 py-3 bg-transparent outline-none" name="search">
+                        <button type="submit" class="bg-cyan-500 py-3 px-5 text-white rounded-xl flex items-center gap-2"><i class='bx bx-search'></i><span>Search</span></button>
+                    </div>
+                </form>
+                <div class="mt-8">
+                    <!-- For loop data category -->
+                    <div class="p-5 mb-8 rounded-xl border border-cyan-500 bg-cyan-50">
+                        <h2 class="text-center text-3xl mb-1 font-bold"><!-- Category name -->Beauty<!-- END Category name --></h2>
+                        <a href="/category/1" class="block text-center text-cyan-600 text-sm hover:underline">View all product with this category</a>
+                        <div class="mt-5 flex overflow-x-auto gap-5 pb-5" id="scroll-home">
+                            <!-- For loop data product from category -->
+                            <a href="/product/1" class="shadow-md rounded-lg bg-white w-80">
+                                <img src="assets/images/serum.jpeg" class="h-64 w-full object-cover rounded-lg">
+                                <h3 class="truncate text-xl pt-3 px-4 mb-1"><!-- Product name -->Serum<!-- END Product name --></h3>
+                                <div class="mb-3 px-4"><span class="font-bold text-cyan-500 text-3xl"><!-- Product price -->100.000<!-- END Product price --></span> <span class="text-xs text-gray-500">IDR</span></div>
+                            </a>
+                            <!-- END For loop data product from category -->
+                            <a href="/product/1" class="shadow-md rounded-lg bg-white w-80">
+                                <img src="assets/images/serum.jpeg" class="h-64 w-full object-cover rounded-lg">
+                                <h3 class="truncate text-xl pt-3 px-4 mb-1"><!-- Product name -->Serum<!-- END Product name --></h3>
+                                <div class="mb-3 px-4"><span class="font-bold text-cyan-500 text-3xl"><!-- Product price -->100.000<!-- END Product price --></span> <span class="text-xs text-gray-500">IDR</span></div>
+                            </a>
+                            <a href="/product/1" class="shadow-md rounded-lg bg-white w-80">
+                                <img src="assets/images/serum.jpeg" class="h-64 w-full object-cover rounded-lg">
+                                <h3 class="truncate text-xl pt-3 px-4 mb-1"><!-- Product name -->Serum<!-- END Product name --></h3>
+                                <div class="mb-3 px-4"><span class="font-bold text-cyan-500 text-3xl"><!-- Product price -->100.000<!-- END Product price --></span> <span class="text-xs text-gray-500">IDR</span></div>
+                            </a>
+                            <a href="/product/1" class="shadow-md rounded-lg bg-white w-80">
+                                <img src="assets/images/serum.jpeg" class="h-64 w-full object-cover rounded-lg">
+                                <h3 class="truncate text-xl pt-3 px-4 mb-1"><!-- Product name -->Serum<!-- END Product name --></h3>
+                                <div class="mb-3 px-4"><span class="font-bold text-cyan-500 text-3xl"><!-- Product price -->100.000<!-- END Product price --></span> <span class="text-xs text-gray-500">IDR</span></div>
+                            </a>
+                            <a href="/product/1" class="shadow-md rounded-lg bg-white w-80">
+                                <img src="assets/images/serum.jpeg" class="h-64 w-full object-cover rounded-lg">
+                                <h3 class="truncate text-xl pt-3 px-4 mb-1"><!-- Product name -->Serum<!-- END Product name --></h3>
+                                <div class="mb-3 px-4"><span class="font-bold text-cyan-500 text-3xl"><!-- Product price -->100.000<!-- END Product price --></span> <span class="text-xs text-gray-500">IDR</span></div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- END For loop data category -->
+                    <div class="p-5 mb-8 rounded-xl border border-cyan-500 bg-cyan-50">
+                        <h2 class="text-center text-3xl mb-1 font-bold"><!-- Category name -->Electronic<!-- END Category name --></h2>
+                        <a href="/category/2" class="block text-center text-cyan-600 text-sm hover:underline">View all product with this category</a>
+                        <div class="mt-5 flex overflow-x-auto gap-5 pb-5" id="scroll-home">
+                            <!-- For loop data product from category -->
+                            <a href="/product/2" class="shadow-md rounded-lg bg-white w-80">
+                                <img src="assets/images/macbookair.jpeg" class="h-64 w-full object-cover rounded-lg">
+                                <h3 class="truncate text-xl pt-3 px-4 mb-1"><!-- Product name -->Macbook Air<!-- END Product name --></h3>
+                                <div class="mb-3 px-4"><span class="font-bold text-cyan-500 text-3xl"><!-- Product price -->15.000.000<!-- END Product price --></span> <span class="text-xs text-gray-500">IDR</span></div>
+                            </a>
+                            <!-- END For loop data product from category -->
+                            <a href="/product/2" class="shadow-md rounded-lg bg-white w-80">
+                                <img src="assets/images/macbookair.jpeg" class="h-64 w-full object-cover rounded-lg">
+                                <h3 class="truncate text-xl pt-3 px-4 mb-1"><!-- Product name -->Macbook Air<!-- END Product name --></h3>
+                                <div class="mb-3 px-4"><span class="font-bold text-cyan-500 text-3xl"><!-- Product price -->15.000.000<!-- END Product price --></span> <span class="text-xs text-gray-500">IDR</span></div>
+                            </a>
+                            <a href="/product/2" class="shadow-md rounded-lg bg-white w-80">
+                                <img src="assets/images/macbookair.jpeg" class="h-64 w-full object-cover rounded-lg">
+                                <h3 class="truncate text-xl pt-3 px-4 mb-1"><!-- Product name -->Macbook Air<!-- END Product name --></h3>
+                                <div class="mb-3 px-4"><span class="font-bold text-cyan-500 text-3xl"><!-- Product price -->15.000.000<!-- END Product price --></span> <span class="text-xs text-gray-500">IDR</span></div>
+                            </a>
+                            <a href="/product/2" class="shadow-md rounded-lg bg-white w-80">
+                                <img src="assets/images/macbookair.jpeg" class="h-64 w-full object-cover rounded-lg">
+                                <h3 class="truncate text-xl pt-3 px-4 mb-1"><!-- Product name -->Macbook Air<!-- END Product name --></h3>
+                                <div class="mb-3 px-4"><span class="font-bold text-cyan-500 text-3xl"><!-- Product price -->15.000.000<!-- END Product price --></span> <span class="text-xs text-gray-500">IDR</span></div>
+                            </a>
+                            <a href="/product/2" class="shadow-md rounded-lg bg-white w-80">
+                                <img src="assets/images/macbookair.jpeg" class="h-64 w-full object-cover rounded-lg">
+                                <h3 class="truncate text-xl pt-3 px-4 mb-1"><!-- Product name -->Macbook Air<!-- END Product name --></h3>
+                                <div class="mb-3 px-4"><span class="font-bold text-cyan-500 text-3xl"><!-- Product price -->15.000.000<!-- END Product price --></span> <span class="text-xs text-gray-500">IDR</span></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-5 mb-8 rounded-xl border border-cyan-500 bg-cyan-50">
+                        <h2 class="text-center text-3xl mb-1 font-bold"><!-- Category name -->Food<!-- END Category name --></h2>
+                        <a href="/category/3" class="block text-center text-cyan-600 text-sm hover:underline">View all product with this category</a>
+                        <div class="mt-5 flex overflow-x-auto gap-5 pb-5" id="scroll-home">
+                            <!-- For loop data product from category -->
+                            <a href="/product/3" class="shadow-md rounded-lg bg-white w-80">
+                                <img src="assets/images/cadbury.jpeg" class="h-64 w-full object-cover rounded-lg">
+                                <h3 class="truncate text-xl pt-3 px-4 mb-1"><!-- Product name -->Cadbury<!-- END Product name --></h3>
+                                <div class="mb-3 px-4"><span class="font-bold text-cyan-500 text-3xl"><!-- Product price -->10.000<!-- END Product price --></span> <span class="text-xs text-gray-500">IDR</span></div>
+                            </a>
+                            <!-- END For loop data product from category -->
+                            <a href="/product/3" class="shadow-md rounded-lg bg-white w-80">
+                                <img src="assets/images/cadbury.jpeg" class="h-64 w-full object-cover rounded-lg">
+                                <h3 class="truncate text-xl pt-3 px-4 mb-1"><!-- Product name -->Cadbury<!-- END Product name --></h3>
+                                <div class="mb-3 px-4"><span class="font-bold text-cyan-500 text-3xl"><!-- Product price -->10.000<!-- END Product price --></span> <span class="text-xs text-gray-500">IDR</span></div>
+                            </a>
+                            <a href="/product/3" class="shadow-md rounded-lg bg-white w-80">
+                                <img src="assets/images/cadbury.jpeg" class="h-64 w-full object-cover rounded-lg">
+                                <h3 class="truncate text-xl pt-3 px-4 mb-1"><!-- Product name -->Cadbury<!-- END Product name --></h3>
+                                <div class="mb-3 px-4"><span class="font-bold text-cyan-500 text-3xl"><!-- Product price -->10.000<!-- END Product price --></span> <span class="text-xs text-gray-500">IDR</span></div>
+                            </a>
+                            <a href="/product/3" class="shadow-md rounded-lg bg-white w-80">
+                                <img src="assets/images/cadbury.jpeg" class="h-64 w-full object-cover rounded-lg">
+                                <h3 class="truncate text-xl pt-3 px-4 mb-1"><!-- Product name -->Cadbury<!-- END Product name --></h3>
+                                <div class="mb-3 px-4"><span class="font-bold text-cyan-500 text-3xl"><!-- Product price -->10.000<!-- END Product price --></span> <span class="text-xs text-gray-500">IDR</span></div>
+                            </a>
+                            <a href="/product/3" class="shadow-md rounded-lg bg-white w-80">
+                                <img src="assets/images/cadbury.jpeg" class="h-64 w-full object-cover rounded-lg">
+                                <h3 class="truncate text-xl pt-3 px-4 mb-1"><!-- Product name -->Cadbury<!-- END Product name --></h3>
+                                <div class="mb-3 px-4"><span class="font-bold text-cyan-500 text-3xl"><!-- Product price -->10.000<!-- END Product price --></span> <span class="text-xs text-gray-500">IDR</span></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

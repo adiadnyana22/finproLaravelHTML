@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Import Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Import Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        #scroll-home::-webkit-scrollbar {
+            background-color: transparent;
+            height: 5px;
+        }
+
+        #scroll-home::-webkit-scrollbar-button {
+            display: none;
+        }
+
+        #scroll-home::-webkit-scrollbar-thumb {
+            background-color: rgb(186, 186, 192, 0.5);
+            border-radius: 16px;
+        }
+
+        #scroll-home::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+    </style>
+    <title>Barbatos Shop</title>
+</head>
+<body>
+    <!-- Navbar Component -->
+    <nav class="shadow-md py-2 px-5 fixed top-0 left-0 right-0 z-10 bg-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex gap-10 items-center">
+                <div><a href="/" class="block py-3 font-bold text-2xl text-cyan-500">Barbatos Shop</a></div>
+                <ul class="flex gap-5">
+                    <li class="relative group">
+                        <div class="text-base flex items-center gap-2 cursor-pointer py-3"><span>Category</span><span class="text-xs"><i class='bx bxs-down-arrow'></i></span></div>
+                        <div class="shadow-md absolute top-full left-0 rounded-lg hidden group-hover:block transition bg-white">
+                            <ul class="divide-y">
+                                <!-- For loop data category -->
+                                <li><a href="/category/1" class="block py-2.5 px-7 transition rounded hover:bg-cyan-600 hover:text-white"><!-- Category name -->Beauty<!-- END Category name --></a></li>
+                                <!-- END For loop data category -->
+                                <li><a href="/category/2" class="block py-2.5 px-7 transition rounded hover:bg-cyan-600 hover:text-white">Electronic</a></li>
+                                <li><a href="/category/3" class="block py-2.5 px-7 transition rounded hover:bg-cyan-600 hover:text-white">Food</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- If user login as Admin -->
+                    <li><a href="/manage" class="block text-base py-3">Manage Product</a></li>
+                    <!-- END If user login as Admin -->
+                </ul>
+            </div>
+            <div>
+                <!-- If user logged in (Admin/Buyer) -->
+                <ul class="flex gap-5 py-1 items-center">
+                    <li class="relative group">
+                        <div class="text-base flex items-center gap-2 cursor-pointer py-3"><span><!-- Username -->Adi<!-- END Username --></span><span class="text-xs"><i class='bx bxs-down-arrow'></i></span></div>
+                        <div class="shadow-md absolute top-full left-0 rounded-lg hidden group-hover:block transition bg-white">
+                            <ul class="divide-y">
+                                <li><a href="/profile" class="block py-2.5 px-7 transition rounded hover:bg-cyan-600 hover:text-white">Profile</a></li>
+                                <!-- If user login as Buyer (Only buyer have history menu) -->
+                                <li><a href="/history" class="block py-2.5 px-7 transition rounded hover:bg-cyan-600 hover:text-white">History</a></li>
+                                <!-- END If user login as Buyer (Only buyer have history menu) -->
+                                <li>
+                                    <form action="" method="POST">
+                                        <button type="submit" class="block py-2.5 px-7 transition rounded hover:bg-cyan-600 hover:text-white">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- If user login as Buyer (Only buyer have cart) -->
+                    <li><a href="/cart" class="block text-xl py-2 px-6 text-white rounded-xl border border-cyan-500 bg-cyan-500 flex items-center gap-2 transition hover:bg-transparent hover:text-cyan-500"><i class='bx bxs-cart-alt' ></i><span class="text-base">Chart</span></a></li>
+                    <!-- END If user login as Buyer (Only buyer have cart) -->
+                </ul>
+                <!-- END If user logged in (Admin/Buyer) -->
+                <!-- Else If user not loggd in (Guest) -->
+                    <!-- <ul class="flex gap-5 py-1 items-center">
+                        <li><a href="/login" class="block text-base py-2">Login</a></li>
+                        <li><a href="/register" class="block text-base py-2">Register</a></li>
+                    </ul> -->
+                <!-- END Else If user not loggd in (Guest) -->
+            </div>
+        </div>
+    </nav>
+    <!-- END Navbar Component -->
+    <main class="pt-20 h-screen">
+        <div class="container mx-auto h-full">
+            <section class="pt-3 pb-24">
+                <h1 class="text-4xl pt-10">Transaction <span class="text-cyan-500 font-bold">History</span></h1>
+                <!-- For loop data transaction -->
+                <div class="mt-5 p-5 rounded-xl border border-cyan-500">
+                    <h2 class="text-xl mb-3">Transaction Date : <!-- Transaction date -->24/05/2023<!-- END Transaction date --></h2>
+                    <table class="border-collapse border border-cyan-500 table-auto w-full">
+                        <thead>
+                            <tr class="bg-cyan-100">
+                                <th class="border border-cyan-500 p-3">Name</th>
+                                <th class="border border-cyan-500 p-3">Quantity</th>
+                                <th class="border border-cyan-500 p-3">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- For loop data product from transaction -->
+                            <tr>
+                                <td class="border border-cyan-500 p-3"><!-- Product name -->Cadbury<!-- END Product name --></td>
+                                <td class="border border-cyan-500 p-3"><!-- Product quantity -->3<!-- END Product quantity --></td>
+                                <td class="border border-cyan-500 p-3">IDR <!-- Sub total price -->30.000<!-- END Sub total price --></td>
+                            </tr>
+                            <!-- For loop data product from transaction -->
+                            <tr>
+                                <td class="border border-cyan-500 p-3"><!-- Product name -->Serum<!-- END Product name --></td>
+                                <td class="border border-cyan-500 p-3"><!-- Product quantity -->2<!-- END Product quantity --></td>
+                                <td class="border border-cyan-500 p-3">IDR <!-- Sub total price -->200.000<!-- END Sub total price --></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="bg-cyan-100">
+                                <th class="border border-cyan-500 p-3">Total</th>
+                                <th class="border border-cyan-500 p-3"><!-- Total quantity -->5<!-- END Total quantity --> item(s)</th>
+                                <th class="border border-cyan-500 p-3">IDR <!-- Total price -->230.000<!-- END Total price --></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- END For loop data transaction -->
+                <div class="mt-5 p-5 rounded-xl border border-cyan-500">
+                    <h2 class="text-xl mb-3">Transaction Date : <!-- Transaction date -->24/05/2023<!-- END Transaction date --></h2>
+                    <table class="border-collapse border border-cyan-500 table-auto w-full">
+                        <thead>
+                            <tr class="bg-cyan-100">
+                                <th class="border border-cyan-500 p-3">Name</th>
+                                <th class="border border-cyan-500 p-3">Quantity</th>
+                                <th class="border border-cyan-500 p-3">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- For loop data product from transaction -->
+                            <tr>
+                                <td class="border border-cyan-500 p-3"><!-- Product name -->Cadbury<!-- END Product name --></td>
+                                <td class="border border-cyan-500 p-3"><!-- Product quantity -->3<!-- END Product quantity --></td>
+                                <td class="border border-cyan-500 p-3">IDR <!-- Sub total price -->30.000<!-- END Sub total price --></td>
+                            </tr>
+                            <!-- For loop data product from transaction -->
+                            <tr>
+                                <td class="border border-cyan-500 p-3"><!-- Product name -->Serum<!-- END Product name --></td>
+                                <td class="border border-cyan-500 p-3"><!-- Product quantity -->2<!-- END Product quantity --></td>
+                                <td class="border border-cyan-500 p-3">IDR <!-- Sub total price -->200.000<!-- END Sub total price --></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="bg-cyan-100">
+                                <th class="border border-cyan-500 p-3">Total</th>
+                                <th class="border border-cyan-500 p-3"><!-- Total quantity -->5<!-- END Total quantity --> item(s)</th>
+                                <th class="border border-cyan-500 p-3">IDR <!-- Total price -->230.000<!-- END Total price --></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="mt-5 p-5 rounded-xl border border-cyan-500">
+                    <h2 class="text-xl mb-3">Transaction Date : <!-- Transaction date -->24/05/2023<!-- END Transaction date --></h2>
+                    <table class="border-collapse border border-cyan-500 table-auto w-full">
+                        <thead>
+                            <tr class="bg-cyan-100">
+                                <th class="border border-cyan-500 p-3">Name</th>
+                                <th class="border border-cyan-500 p-3">Quantity</th>
+                                <th class="border border-cyan-500 p-3">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- For loop data product from transaction -->
+                            <tr>
+                                <td class="border border-cyan-500 p-3"><!-- Product name -->Cadbury<!-- END Product name --></td>
+                                <td class="border border-cyan-500 p-3"><!-- Product quantity -->3<!-- END Product quantity --></td>
+                                <td class="border border-cyan-500 p-3">IDR <!-- Sub total price -->30.000<!-- END Sub total price --></td>
+                            </tr>
+                            <!-- For loop data product from transaction -->
+                            <tr>
+                                <td class="border border-cyan-500 p-3"><!-- Product name -->Serum<!-- END Product name --></td>
+                                <td class="border border-cyan-500 p-3"><!-- Product quantity -->2<!-- END Product quantity --></td>
+                                <td class="border border-cyan-500 p-3">IDR <!-- Sub total price -->200.000<!-- END Sub total price --></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="bg-cyan-100">
+                                <th class="border border-cyan-500 p-3">Total</th>
+                                <th class="border border-cyan-500 p-3"><!-- Total quantity -->5<!-- END Total quantity --> item(s)</th>
+                                <th class="border border-cyan-500 p-3">IDR <!-- Total price -->230.000<!-- END Total price --></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
